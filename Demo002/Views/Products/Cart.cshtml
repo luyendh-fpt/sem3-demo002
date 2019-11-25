@@ -1,0 +1,17 @@
+﻿@using Demo002.Models
+
+@{
+    ViewBag.Title = "Cart";
+    var shoppingCart = ViewBag.ShoppingCart as ShoppingCart;
+}
+
+<h2>This is shopping cart</h2>
+<ul>
+    @foreach (var cartItem in shoppingCart.GetCartItems())
+    {
+        <li>
+            @cartItem.ProductName - @cartItem.UnitPrice - @cartItem.Quantity
+        </li>
+    }
+</ul>
+
