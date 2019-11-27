@@ -23,5 +23,7 @@ namespace Demo002.Models
 
         public System.Data.Entity.DbSet<Demo002.Models.Category> Categories { get; set; }
         public System.Data.Entity.DbSet<Demo002.Models.Product> Products { get; set; }
+        public System.Data.Entity.DbSet<Demo002.Models.Order> Orders { get; set; }
+        public System.Data.Entity.DbSet<Demo002.Models.OrderDetail> OrderDetails { get; set; }
     }
 }

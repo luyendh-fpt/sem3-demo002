@@ -1,0 +1,32 @@
+﻿@using Demo002.Models
+
+@{
+    ViewBag.Title = "Cart";
+    var shoppingCart = ViewBag.ShoppingCart as ShoppingCart;
+}
+
+<h2>This is shopping cart</h2>
+<ul>
+    @foreach (var cartItem in shoppingCart.GetCartItems())
+    {
+        <li>
+            @using (Html.BeginForm("UpdateCart", "ShoppingCart", FormMethod.Get))
+            {
+                <span>@cartItem.ProductName</span>
+                <span>
+                    @Html.ActionLink("-", "AddToCart", new { productId = cartItem.ProductId, quantity = -1 })
+                    <input type="text" value="@cartItem.Quantity" class="cart-quantity" name="quantity" />
+                    <input type="hidden" value="@cartItem.ProductId" name="productId" />
+                    @Html.ActionLink("+", "AddToCart", new { productId = cartItem.ProductId, quantity = 1 })
+                </span>
+                <span>@cartItem.UnitPrice - </span>
+                <span>
+                    <input type="submit" value="Update" class="btn btn-primary" />
+                    @Html.ActionLink("Remove", "RemoveFromCart", new { productId = cartItem.ProductId }, new { @class = "btn btn-danger" })
+                </span>
+            }
+        </li>
+    }
+</ul>
+<p><strong>Total price: @shoppingCart.GetTotalPrice()</strong></p>
+@Html.ActionLink("Create Order", "CreateOrder", null, new { @class = "btn btn-success" })

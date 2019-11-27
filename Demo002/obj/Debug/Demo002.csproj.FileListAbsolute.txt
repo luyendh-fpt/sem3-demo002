@@ -96,3 +96,5 @@ C:\Users\xuan hung\source\repos\Demo002\Demo002\obj\Debug\Demo002.pdb
 C:\Users\xuan hung\source\repos\Demo002\Demo002\obj\Debug\Demo002.Migrations.InitializeDatabase.resources
 C:\Users\xuan hung\source\repos\Demo002\Demo002\obj\Debug\Demo002.csproj.GenerateResource.cache
 C:\Users\xuan hung\source\repos\Demo002\Demo002\obj\Debug\Demo002.Migrations.AddDescriptionToCategory.resources
+C:\Users\xuan hung\source\repos\Demo002\Demo002\obj\Debug\Demo002.csprojAssemblyReference.cache
+C:\Users\xuan hung\source\repos\Demo002\Demo002\obj\Debug\Demo002.Migrations.AddOrderAndOrderDetail.resources

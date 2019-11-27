@@ -21,54 +21,6 @@ namespace Demo002.Controllers
             return View(products.ToList());
         }
 
-        public ActionResult AddToCart(int? id)
-        {
-            var product = db.Products.Find(id);
-            if (product == null)
-            {
-                return HttpNotFound();
-            }
-
-            var shoppingCart = new ShoppingCart();
-            if (Session["ShoppingCart"] is ShoppingCart currentShoppingCart)
-            {
-                shoppingCart = currentShoppingCart;
-            }
-
-            CartItem cartItem = new CartItem();
-            bool existItem = false;
-            if (shoppingCart.GetCartItems() != null)
-            {
-                foreach (var item in shoppingCart.GetCartItems())
-                {
-                    if (item.ProductId.Equals(id))
-                    {
-                        item.Quantity++;
-                        existItem = true;
-                    }
-                }
-            }
-
-            if (!existItem)
-            {
-                cartItem = new CartItem();
-                cartItem.ProductId = product.Id;
-                cartItem.ProductName = product.Name;
-                cartItem.Quantity = 1;
-                cartItem.UnitPrice = product.Price;
-                var cartItems = shoppingCart.GetCartItems();
-                if (cartItems == null)
-                {
-                    cartItems = new List<CartItem>();
-                }
-                cartItems.Add(cartItem);
-                shoppingCart.SetCartItems(cartItems);
-            }
-            Session["ShoppingCart"] = shoppingCart;
-            ViewBag.ShoppingCart = shoppingCart;
-            return View("Cart");
-        }
-
         // GET: Products/Details/5
         public ActionResult Details(int? id)
         {

@@ -7,32 +7,69 @@ namespace Demo002.Models
 {
     public class ShoppingCart
     {
-        private List<CartItem> _cartItems;
-        public double TotalPrice { get; set; }
+        private Dictionary<int, CartItem> _cartItems = new Dictionary<int, CartItem>();
+        public double _totalPrice = 0;
+
+        public double GetTotalPrice()
+        {
+            this._totalPrice = 0;
+            foreach (var item in _cartItems.Values)
+            {
+                this._totalPrice += item.UnitPrice * item.Quantity;
+            }
+            return this._totalPrice;
+        }
 
         public List<CartItem> GetCartItems()
         {
-            if (_cartItems == null)
-            {
-                _cartItems = new List<CartItem>();
-            }
-            return _cartItems;
+            return _cartItems.Values.ToList();
         }
 
-        public void SetCartItems(List<CartItem> items)
+        public void AddCartItem(Product product, int quantity)
         {
-            _cartItems = items;
-        }
-
-        public void AddCartItem(CartItem item)
-        {
-            if (_cartItems == null)
+            // Kiểm tra xem sản phẩm có tồn tại trong cart hay không?
+            if (_cartItems.ContainsKey(product.Id))
             {
-                _cartItems = new List<CartItem>();
+                var existItem = _cartItems[product.Id];
+                // trong trường hợp tồn tại thì update số lượng và dừng xử lý.
+                existItem.Quantity += quantity;
+                if (existItem.Quantity <= 0)
+                {
+                    _cartItems.Remove(product.Id);
+                }
+                else
+                {
+                    _cartItems[product.Id] = existItem;
+                }
+                return;
             }
-            _cartItems.Add(item);
+            // Trong trường hợp không tồn tại sản phẩm trong giỏ hàng thì thêm mới.
+            _cartItems.Add(product.Id, new CartItem(product, quantity));
         }
 
+        public void UpdateCartItem(Product product, int quantity)
+        {
+            // Kiểm tra xem sản phẩm có tồn tại trong cart hay không?
+            if (_cartItems.ContainsKey(product.Id))
+            {
+                var existItem = _cartItems[product.Id];
+                // trong trường hợp tồn tại thì update số lượng và dừng xử lý.
+                existItem.Quantity = quantity;
+                _cartItems[product.Id] = existItem;
+                return;
+            }
+            // Trong trường hợp không tồn tại sản phẩm trong giỏ hàng thì thêm mới.
+            _cartItems.Add(product.Id, new CartItem(product, quantity));
+        }
 
+        public void RemoveCartItem(int productId)
+        {
+            // Kiểm tra xem sản phẩm có tồn tại trong cart hay không?
+            if (_cartItems.ContainsKey(productId))
+            {
+                _cartItems.Remove(productId);
+                return;
+            }
+        }
     }
 }
