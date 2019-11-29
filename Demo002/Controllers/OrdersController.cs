@@ -17,6 +17,8 @@ namespace Demo002.Controllers
         // GET: Orders
         public ActionResult Index()
         {
+
+            //db.Orders.Where(s => s.CreatedAt > startTime && s.CreatedAt <= endTime).ToList();
             return View(db.Orders.ToList());
         }
 
