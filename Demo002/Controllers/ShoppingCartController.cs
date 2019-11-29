@@ -69,10 +69,10 @@ namespace Demo002.Controllers
             return Redirect("/ShoppingCart");
         }
 
-        public ActionResult CreateOrder()
+        public ActionResult CreateOrder(CartInformation cartInformation)
         {
             var shoppingCart = LoadShoppingCart();
-            if (orderService.createOrder(shoppingCart))
+            if (orderService.createOrder(shoppingCart, cartInformation))
             {
                 TempData["msg"] = "Order success!";
                 ClearCart();

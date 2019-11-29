@@ -9,6 +9,6 @@ namespace Demo002.Service
 {
     interface IOrderService
     {
-        bool createOrder(ShoppingCart cart);
+        bool createOrder(ShoppingCart cart, CartInformation cartInformation);
     }
 }

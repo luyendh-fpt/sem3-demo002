@@ -9,7 +9,7 @@ namespace Demo002.Service
     public class OrderService: IOrderService
     {
         private Demo002Context db = new Demo002Context();
-        public bool createOrder(ShoppingCart cart)
+        public bool createOrder(ShoppingCart cart, CartInformation cartInformation)
         {
             if (cart.GetCartItems().Count == 0)
             {
@@ -17,10 +17,10 @@ namespace Demo002.Service
             }
             var order = new Order();
             order.MemberId = 1;
-            order.PaymentTypeId = (int) Order.PaymentType.Cod;
-            order.ShipName = "Xuan Hung";
-            order.ShipPhone = "09123123123";
-            order.ShipAddress = "8 TTT";
+            order.PaymentTypeId = cartInformation.PaymentTypeId;
+            order.ShipName = cartInformation.ShipName;
+            order.ShipPhone = cartInformation.ShipPhone;
+            order.ShipAddress = cartInformation.ShipAddress;
             order.TotalPrice = cart.GetTotalPrice();
             var orderDetails = new List<OrderDetail>();
             bool existError = false;
