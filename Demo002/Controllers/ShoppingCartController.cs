@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -71,7 +72,17 @@ namespace Demo002.Controllers
         public ActionResult CreateOrder()
         {
             var shoppingCart = LoadShoppingCart();
+            if (orderService.createOrder(shoppingCart))
+            {
+                TempData["msg"] = "Order success!";
+                ClearCart();
+            }
             return Redirect("/Products");
+        }
+
+        private void ClearCart()
+        {
+            Session.Remove(ShoppingCartAttribute);
         }
 
         /**

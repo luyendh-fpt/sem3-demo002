@@ -159,6 +159,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Global.asax.cs">
@@ -175,6 +176,10 @@
     <Compile Include="Migrations\201911271439023_AddOrderAndOrderDetail.cs" />
     <Compile Include="Migrations\201911271439023_AddOrderAndOrderDetail.Designer.cs">
       <DependentUpon>201911271439023_AddOrderAndOrderDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201911291223423_AddChange.cs" />
+    <Compile Include="Migrations\201911291223423_AddChange.Designer.cs">
+      <DependentUpon>201911291223423_AddChange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\CartItem.cs" />
@@ -237,6 +242,11 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Cart.cshtml" />
     <Content Include="Views\ShoppingCart\Index.cshtml" />
+    <Content Include="Views\Orders\Create.cshtml" />
+    <Content Include="Views\Orders\Delete.cshtml" />
+    <Content Include="Views\Orders\Details.cshtml" />
+    <Content Include="Views\Orders\Edit.cshtml" />
+    <Content Include="Views\Orders\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -263,6 +273,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201911271439023_AddOrderAndOrderDetail.resx">
       <DependentUpon>201911271439023_AddOrderAndOrderDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201911291223423_AddChange.resx">
+      <DependentUpon>201911291223423_AddChange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
